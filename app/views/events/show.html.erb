@@ -1,0 +1,65 @@
+
+<% content_for :left_column do %>
+  <a href="/events">Back To Events Dashboard</a>
+  <h2><%= @event.name %></h2>
+
+  <table class="table">
+    <tr>
+      <td style="width:50px">Host:</td>
+      <td style="width:100px"><%= "#{@event.user.first_name} #{@event.user.last_name}" %></td>
+      <td style="width:5px"></td>
+    </tr>
+    <tr>
+      <td>Date:</td>
+      <td><%= @event.date.strftime('%B %d, %Y') %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Location:</td>
+      <td><%= @event.city %></td>
+      <td><%= @event.state %></td>
+    </tr>
+  </table>
+
+  <table class="table">
+    <tr>
+      <th>People who are joining the event:&nbsp;&nbsp;</th>
+      <td><%= @event_count %></td>
+    </tr>
+  </table>
+
+  <table class="table table-bordered table-striped">
+    <col span="50">
+    <tr>
+      <th style="width:100px">Name</th>
+      <th style="width:100px">Location</th>
+      <th style="width:10px">State</th>
+    </tr>
+    <% @attenders.each do |attender| %>
+      <tr>
+        <td>  <%= "#{attender.first_name} #{attender.last_name}" %></td>
+        <td>  <%= attender.city %></td>
+        <td>  <%= attender.state %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<% content_for :middle_column do %>
+  <h4 class="discussion_comments">Discussion about this event</h4>
+  <textarea name="attenders" rows="8" cols="40" readonly>
+    <% @comments.each do |comment| %>
+    <%= comment.user.first_name %> says,
+    <%= comment.content %>
+    <% end %>
+  </textarea>
+<% end %>
+
+<% content_for :right_column do %>
+  <form class="" action='/events/<%= @event.id %>/comments' method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <h4 class="discussion_comments">Add Comment:</h4>
+    <textarea name="discussion[content]" rows="2" cols="40" ></textarea>
+    <input type="submit" name="join" value="Submit Comment">
+  </form>
+<% end %>

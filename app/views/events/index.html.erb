@@ -1,0 +1,116 @@
+<% content_for :left_column do %>
+  <h2><%= "Welcome, #{@user[:first_name]}!" %></h2>
+
+  <% if @user %>
+    <form class="edit_profile" action="/users/<%=@user.id%>/edit" method="get">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" value="Edit My Profile">
+    </form>
+  <% end %>
+
+  <h4>Here are some of the events in your state:</h4>
+  <div class="events_in_your_state">
+    <table class="table table-bordered table-striped table-hover">
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Host</th>
+        <th>Action/Status</th>
+      </tr>
+
+      <% @in_state_events.each do |event| %>
+        <tr>
+          <td><%= (link_to event.name, events_show_path(event.id)) %></td>
+          <td><%= event.date.strftime('%B %d, %Y') %></td>
+          <td><%= event.city %></td>
+          <td><%= event.user.first_name %></td>
+          <td>
+            <% if event.user.id == @user.id %>
+            <a href="events/<%= event.id %>/edit">Edit</a>
+            <%= link_to "Delete", events_destroy_path(event.id), :method => :delete, :data => {:confirm => "Are you sure?"} %>
+            <% else
+              if event.users.exclude? @user %>
+              <%= link_to "Join", attending_events_create_path(event.id), :method => :post %>
+              <% else %>
+              Joining
+              <%= link_to "Cancel", attending_events_destroy_path(event.id), :method => :delete, :data => {:confirm => "Are you sure?"} %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="add_event">
+    <h3>Add Event</h3>
+      <form class="add_event" action='events' method="post">
+        <table class="table table-bordered table-striped table-hover">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <tr>
+            <td><label for="">Name:</label></td>
+            <td><input type="text" name="new_event[name]" id="name" value=""></td>
+          </tr>
+          <tr>
+            <td><label for="">Date:</label></td>
+            <td><input type="date" name="new_event[date]" id="date" value=""></td>
+          </tr>
+          <tr>
+            <td><label for="">Location:</label></td>
+            <td><input type="text" name="new_event[city]" id="city"></td>
+            <td>
+              <select class="" name="new_event[state]">
+                <% IO.foreach('states.txt') do |line| %>
+                  <option value="<%= line.strip %>"><%=line%></option>
+                <% end %>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="submit" name="add_event" value="Add Event"></td>
+          </tr>
+        </table>
+      </form>
+  </div>
+<% end %>
+
+<% content_for :right_column do %>
+  <h4>Here are some of the events in other states:</h4>
+  <div class="events_in_other_states">
+    <table class="table table-bordered table-striped table-hover">
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>State</th>
+        <th>Host</th>
+        <th>Action/Status</th>
+      </tr>
+
+      <% @other_state_events.each do |event| %>
+        <tr>
+          <td><%= (link_to event.name, events_show_path(event.id)) %></td>
+          <td><%= event.date.strftime('%B %d, %Y') %></td>
+          <td><%= event.city %></td>
+          <td><%= event.state %></td>
+          <td><%= event.user.first_name %></td>
+          <td>
+            <% if event.user.id == @user.id %>
+            <a href="events/<%= event.id %>/edit">Edit</a>
+            <%= link_to "Delete", events_destroy_path(event.id), :method => :delete, :data => {:confirm => "Are you sure?"} %>
+            <% else
+              if event.users.exclude? @user %>
+              <%= link_to "Join", attending_events_create_path(event.id), :method => :post %>
+              <% else %>
+              Joining
+              <%= link_to "Cancel", attending_events_destroy_path(event.id), :method => :delete, :data => {:confirm => "Are you sure?"} %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+<% end %>

@@ -1,0 +1,45 @@
+<h1>Edit</h1>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<form class="" action='/users/<%= @user.id %>' method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="patch">
+  <table>
+    <tr>
+      <td><label for="">First Name:</label></td>
+      <td>    <input type="text" name="user[first_name]" id="first_name" value="<%= @user.first_name %>"></td>
+    </tr>
+    <tr>
+      <td>    <label for="">Last Name:</label></td>
+      <td>    <input type="text" name="user[last_name]" id="last_name" value="<%= @user.last_name %>"></td>
+    </tr>
+    <tr>
+      <td><label for="">Email:</label></td>
+      <td><input type="text" name="user[email]" id="email" value="<%= @user.email %>"></td>
+    </tr>
+    <tr>
+      <td><label for="">Location:</label></td>
+      <td><input type="text" name="user[city]" value="<%= @user.city %>"></td>
+      <td>    <select class="" name="user[state]">
+            <% IO.foreach('states.txt') do |line| %>
+              <option value="<%= line.strip %>"><%=line%></option>
+            <% end %>
+          </select>
+        </td>
+    </tr>
+    <tr>
+      <td><label for="">Password:</label></td>
+      <td><input type="password" name="user[password]" value="<%= @user.password %>"></td>
+    </tr>
+    <tr>
+      <td>Password should be at least 8 characters</td>
+    </tr>
+    <tr>
+      <td><input type="submit" name="edit_profile" value="Update Records"></td>
+      <td><a href="/events">Back to Dashboard</a></td>
+    </tr>
+  </table>
+</form>

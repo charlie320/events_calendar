@@ -1,0 +1,41 @@
+<h2>Edit Event</h2>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+  <form class="edit_event" action='/events/<%= @event.id %>' method="post">
+    <table class="table" style="width:400px">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="_method" value="patch">
+      <tr>
+        <th style="width:150px"><label for="">Name:</label></th>
+        <th style="width:230px"><input type="text" name="new_event[name]" id="name" value="<%= @event.name %>"></th>
+        <th style="width:20px"></th>
+      </tr>
+      <tr>
+        <td><label for="">Date:</label></td>
+        <td><input type="date" name="new_event[date]" id="date" value="<%= @event.date %>"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><label for="">Location:</label></td>
+        <td><input type="text" name="new_event[city]" id="city" value="<%= @event.city %>"></td>
+        <td>    <select class="" name="new_event[state]" value="<%= @event.state %>">
+              <% IO.foreach('states.txt') do |line| %>
+                <option value="<%= line.strip %>"><%=line%></option>
+              <% end %>
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="submit" name="add_event" value="Update Event"></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a href="/events">Back to Dashboard</a></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </form>

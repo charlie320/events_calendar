@@ -1,0 +1,81 @@
+
+<% content_for :left_column do %>
+    <h1>Welcome to the Events Calendar!</h1>
+    <h2>Login or Register</h2>
+    <h3>Register</h3>
+      <form class="register_form" action="users" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <table class="table" style="width:500px">
+          <tr>
+            <th style="width:175px"><label for="">First Name:</label></th>
+            <th style="width:200px"><input type="text" name="register[first_name]"></th>
+            <th style="width:75px"></th>
+          </tr>
+          <tr>
+            <td><label for="">Last Name:</label></td>
+            <td><input type="text" name="register[last_name]"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><label for="">Email:</label></td>
+            <td><input type="text" name="register[email]"></td>
+            <td></td>
+          </tr>
+            <td><label for="">Location:</label></td>
+            <td><input type="text" name="register[city]"></td>
+            <td>
+              <select class="" name="register[state]">
+                <% IO.foreach('states.txt') do |line| %>
+                  <option value="<%= line.strip %>"><%=line%></option>
+                <% end %>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><label for="">Password:</label></td>
+            <td><input type="password" name="register[password]"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Password should be at least 8 characters</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><label for="">Confirm Password:</label></td>
+            <td><input type="password" name="register[password_confirmation]"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><input type="submit" name="submit" value="Register"></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </form>
+<% end %>
+
+<% content_for :right_column do %>
+    <h3 id="login_h3">Login</h3>
+      <form class="login_form" action="sessions" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <table class="table" style="width:400px">
+          <tr>
+            <th style="width:200px"><label for="">Email:</label></th>
+            <th style="width:200px"><input type="text" name="login[email]"></th>
+          </tr>
+          <tr>
+            <td><label for="">Password:</label></td>
+            <td><input type="password" name="login[password]"></td>
+          </tr>
+          <tr>
+            <td><input type="submit" name="submit" value="Login"></td>
+            <td></td>
+          </tr>
+        </table>
+      </form>
+<% end %>
+<footer>
+  <p>Developed by Jesus C. de la Rosa using Ruby on Rails and Twitter Bootstrap</p>
+  <p> Please visit my website at <a href="http://charliedelarosa.com" target="_blank">charliedelarosa.com</a></p>
+</footer>
