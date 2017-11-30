@@ -7,6 +7,8 @@ gem 'rails', '4.2.7'
 gem 'sqlite3'
 # Use postgres as database for ActiveRecord
 gem 'pg'
+# Passenger
+gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
