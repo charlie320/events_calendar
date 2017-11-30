@@ -82,6 +82,7 @@ test:
 #
 production:
   <<: *default
-  database: belt_reviewer_production
+  # database: belt_reviewer_production
+  database: events_calendar_production
   username: belt_reviewer
   password: <%= ENV['BELT_REVIEWER_DATABASE_PASSWORD'] %>
