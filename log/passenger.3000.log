@@ -11,3 +11,15 @@ App 2762 stderr:
 App 2762 stderr: You should use PG::Connection, PG::Result, and PG::Error instead, respectively.
 App 2762 stderr: 
 App 2762 stderr: Called from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+
+[ N 2017-11-30 08:03:13.5263 2727/T8 age/Cor/CoreMain.cpp:589 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2017-11-30 08:03:13.5265 2727/T1 age/Cor/CoreMain.cpp:1080 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2017-11-30 08:03:13.5267 2727/T1 age/Cor/CoreMain.cpp:994 ]: Checking whether to disconnect long-running connections for process 2778, application /vagrant/events_calendar/public (development)
+[ N 2017-11-30 08:03:13.5270 2727/T8 Ser/Server.h:886 ]: [ServerThr.1] Freed 128 spare client objects
+[ N 2017-11-30 08:03:13.5271 2727/Ta Ser/Server.h:886 ]: [ServerThr.2] Freed 128 spare client objects
+[ N 2017-11-30 08:03:13.5272 2727/Ta Ser/Server.h:531 ]: [ServerThr.2] Shutdown finished
+[ N 2017-11-30 08:03:13.5272 2727/T8 Ser/Server.h:531 ]: [ServerThr.1] Shutdown finished
+[ N 2017-11-30 08:03:13.5274 2727/Tc Ser/Server.h:886 ]: [ApiServer] Freed 0 spare client objects
+[ N 2017-11-30 08:03:13.5276 2727/Tc Ser/Server.h:531 ]: [ApiServer] Shutdown finished
+[ N 2017-11-30 08:03:13.5278 2727/T1 age/Cor/CoreMain.cpp:994 ]: Checking whether to disconnect long-running connections for process 2778, application /vagrant/events_calendar/public (development)
+[ N 2017-11-30 08:03:13.7813 2727/T1 age/Cor/CoreMain.cpp:1150 ]: Passenger core shutdown finished
