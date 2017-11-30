@@ -1,0 +1,13 @@
+[ N 2017-11-30 07:53:43.9323 2724/T1 age/Wat/WatchdogMain.cpp:1267 ]: Starting Passenger watchdog...
+[ N 2017-11-30 07:53:43.9392 2727/T1 age/Cor/CoreMain.cpp:1165 ]: Starting Passenger core...
+[ N 2017-11-30 07:53:43.9397 2727/T1 age/Cor/CoreMain.cpp:249 ]: Passenger core running in multi-application mode.
+[ N 2017-11-30 07:53:43.9491 2727/T1 age/Cor/CoreMain.cpp:905 ]: Passenger core online, PID 2727
+App 2762 stdout: 
+[ N 2017-11-30 07:53:46.7932 2727/T6 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+App 2778 stdout: 
+App 2762 stderr: The PGconn, PGresult, and PGError constants are deprecated, and will be
+App 2762 stderr: removed as of version 1.0.
+App 2762 stderr: 
+App 2762 stderr: You should use PG::Connection, PG::Result, and PG::Error instead, respectively.
+App 2762 stderr: 
+App 2762 stderr: Called from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
